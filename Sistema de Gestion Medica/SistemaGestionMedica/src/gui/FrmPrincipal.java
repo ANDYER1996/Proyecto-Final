@@ -47,6 +47,7 @@ public class FrmPrincipal extends JFrame implements ActionListener {
     private JMenuItem itemPaciente;
     private JMenuItem itemMedico;
     private JMenuItem itemEspecialidad;
+    private JMenuItem itemMedicamentos;
     private JMenuItem itemCita;
     private JMenuItem itemReceta;
     private JMenuItem itemHistorial;
@@ -103,10 +104,12 @@ public class FrmPrincipal extends JFrame implements ActionListener {
         itemPaciente = crearItem("Pacientes");
         itemMedico = crearItem("Médicos");
         itemEspecialidad = crearItem("Especialidades");
+        itemMedicamentos = crearItem("Medicamentos / Stock");
 
         mnMantenimiento.add(itemPaciente);
         mnMantenimiento.add(itemMedico);
         mnMantenimiento.add(itemEspecialidad);
+        mnMantenimiento.add(itemMedicamentos);
 
         JMenu mnProcesos = new JMenu("Procesos");
         menuBar.add(mnProcesos);
@@ -353,6 +356,12 @@ public class FrmPrincipal extends JFrame implements ActionListener {
         abrirVentana(formulario);
     }
 
+    private void abrirMedicamentos() {
+        FormMedicamentos formulario = new FormMedicamentos();
+        formulario.actualizar();
+        abrirVentana(formulario);
+    }
+
     private void abrirCita() {
         FormCita formulario = new FormCita();
         formulario.actualizarCitas("");
@@ -391,6 +400,8 @@ public class FrmPrincipal extends JFrame implements ActionListener {
             abrirMedico();
         } else if (e.getSource() == itemEspecialidad) {
             abrirEspecialidad();
+        } else if (e.getSource() == itemMedicamentos) {
+            abrirMedicamentos();
         } else if (e.getSource() == itemCita) {
             abrirCita();
         } else if (e.getSource() == itemReceta) {

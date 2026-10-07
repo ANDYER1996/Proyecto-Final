@@ -57,7 +57,7 @@ public class FormCita extends JInternalFrame {
         JButton btnAgendar = new JButton("Agendar Cita");
         btnAgendar.addActionListener(e -> agendar());
         datos.add(btnAgendar);
-        datos.add(new JLabel("Seleccione especialidad y revise el historial de medicamentos del paciente."));
+        datos.add(new JLabel(""));
 
         cboPaciente.addActionListener(e -> cargarMedicamentosPaciente());
         cboMedico.addActionListener(e -> sincronizarEspecialidadConMedico());

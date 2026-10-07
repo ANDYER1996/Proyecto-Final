@@ -11,6 +11,7 @@ public class DatosSistema {
     public static List<Cita> citas = new ArrayList<>();
     public static List<Receta> recetas = new ArrayList<>();
     public static List<HistorialMedico> historiales = new ArrayList<>();
+    public static List<Medicamento> medicamentos = new ArrayList<>();
 
     public static void cargarDatosIniciales() {
         if (pacientes.isEmpty()) {
@@ -44,6 +45,13 @@ public class DatosSistema {
         if (historiales.isEmpty()) {
             historiales.add(new HistorialMedico("H001", pacientes.get(0), "Hipertensión Leve", "Alergia a la Penicilina", "2026-01-15"));
             historiales.add(new HistorialMedico("H002", pacientes.get(1), "Asma Bronquial", "Ninguna", "2026-03-20"));
+        }
+        if (medicamentos.isEmpty()) {
+            medicamentos.add(new Medicamento("MED001", "Paracetamol 500mg", 120, "2027-06-30"));
+            medicamentos.add(new Medicamento("MED002", "Ibuprofeno 400mg", 80, "2027-04-15"));
+            medicamentos.add(new Medicamento("MED003", "Losartán 50mg", 60, "2028-01-20"));
+            medicamentos.add(new Medicamento("MED004", "Salbutamol", 40, "2027-09-10"));
+            medicamentos.add(new Medicamento("MED005", "Amoxicilina 500mg", 75, "2027-11-05"));
         }
     }
 }
