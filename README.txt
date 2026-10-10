@@ -9,6 +9,7 @@ Cambios realizados:
 6. Se agrego el modulo Mantenimiento > Medicamentos / Stock.
 7. Se agrego la entidad Medicamento con nombre, stock disponible y fecha de vencimiento.
 8. Se cargaron medicamentos de ejemplo con stock hospitalario.
+9. Se agrego registro clinico.
 
 IMPORTAR EN ECLIPSE:
 File > Import > Existing Projects into Workspace > seleccionar la carpeta SistemaGestionMedica.
