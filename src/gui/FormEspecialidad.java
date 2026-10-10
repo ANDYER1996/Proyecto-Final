@@ -1,0 +1,67 @@
+package gui;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import datos.DatosSistema;
+import entidad.Especialidad;
+
+public class FormEspecialidad extends JInternalFrame {
+	private JTextField txtNombre, txtDesc, txtBuscar;
+	private DefaultTableModel model;
+
+	public FormEspecialidad() {
+		setTitle("Mantenimiento de Especialidades");
+		setClosable(true);
+		setMaximizable(true);
+		setIconifiable(true);
+		setBounds(60, 60, 580, 380);
+		getContentPane().setLayout(new BorderLayout(5, 5));
+		JPanel f = new JPanel(new GridLayout(3, 2, 5, 5));
+		f.setBorder(BorderFactory.createTitledBorder("Registrar Especialidad"));
+		f.add(new JLabel(" Especialidad:"));
+		txtNombre = new JTextField();
+		f.add(txtNombre);
+		f.add(new JLabel(" Descripción:"));
+		txtDesc = new JTextField();
+		f.add(txtDesc);
+		JButton b = new JButton("Guardar Especialidad");
+		b.addActionListener(e -> guardar());
+		f.add(b);
+		JPanel s = new JPanel(new BorderLayout(5, 5));
+		s.setBorder(BorderFactory.createTitledBorder("Buscar Especialidad"));
+		txtBuscar = new JTextField();
+		txtBuscar.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e) {
+				buscar(txtBuscar.getText().trim());
+			}
+		});
+		s.add(txtBuscar);
+		JPanel n = new JPanel(new BorderLayout());
+		n.add(f, BorderLayout.CENTER);
+		n.add(s, BorderLayout.SOUTH);
+		getContentPane().add(n, BorderLayout.NORTH);
+		model = new DefaultTableModel(new Object[] { "ID", "Nombre", "Descripción" }, 0);
+		getContentPane().add(new JScrollPane(new JTable(model)), BorderLayout.CENTER);
+	}
+
+	private void guardar() {
+		if (!txtNombre.getText().trim().isEmpty()) {
+			String id = "E" + String.format("%03d", DatosSistema.especialidades.size() + 1);
+			DatosSistema.especialidades.add(new Especialidad(id, txtNombre.getText().trim(), txtDesc.getText().trim()));
+			buscar("");
+			txtNombre.setText("");
+			txtDesc.setText("");
+			JOptionPane.showMessageDialog(this, "Especialidad guardada correctamente.");
+		} else
+			JOptionPane.showMessageDialog(this, "Ingrese el nombre de la especialidad.");
+	}
+
+	public void buscar(String t) {
+		model.setRowCount(0);
+		for (Especialidad e : DatosSistema.especialidades)
+			if (e.getNombre().toLowerCase().contains(t.toLowerCase()))
+				model.addRow(new Object[] { e.getId(), e.getNombre(), e.getDescripcion() });
+	}
+}
